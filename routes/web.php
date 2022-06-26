@@ -25,8 +25,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/issues', [TicketController::class, 'index'])->name('issues');
+    Route::post('/createissue', [TicketController::class, 'createissue'])->name('createissue');
     Route::get('/editissue/{id}', [TicketController::class, 'editissue'])->name('editissue');
     Route::post('/updateissue/{id}', [TicketController::class, 'updateissue'])->name('updateissue');
+    Route::get('/lockissue/{id}', [TicketController::class, 'lockissue'])->name('lockissue');
+    Route::get('/unlockissue/{id}', [TicketController::class, 'unlockissue'])->name('unlockissue');
 
 
 });
