@@ -28,7 +28,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/createissue', [TicketController::class, 'createissue'])->name('createissue');
     Route::get('/editissue/{id}', [TicketController::class, 'editissue'])->name('editissue');
     Route::post('/updateissue/{id}', [TicketController::class, 'updateissue'])->name('updateissue');
-    Route::get('/lockissue/{id}', [TicketController::class, 'lockissue'])->name('lockissue');
+    Route::post('/lockissue/{id}', [TicketController::class, 'lockissue'])->name('lockissue');
     Route::get('/unlockissue/{id}', [TicketController::class, 'unlockissue'])->name('unlockissue');
 
 

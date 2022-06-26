@@ -14,7 +14,8 @@ class TicketController extends Controller
             "Authorization" => "token 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"
         ])->get('https://api.github.com/repos/RGeetha24/gitapi/issues');
         $datas = $response->json();
-        return view('tickets/index',compact('datas'));
+        $lock_reasons=["off-topic", "too heated", "resolved", "spam"];
+        return view('tickets/index',compact('datas','lock_reasons'));
     }
 
     public function editissue($id){
@@ -44,11 +45,11 @@ class TicketController extends Controller
         return redirect()->route('issues')->with('success',"Issue updated successfully");
     }
 
-    public function lockissue($id){
+    public function lockissue($id,Request $request){
         $response = Http::withHeaders([
             "Accept" => "application/vnd.github.v3+json" ,
             "Authorization" => "token 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"
-        ])->put("https://api.github.com/repos/RGeetha24/gitapi/issues/".$id."/lock",['lock_reason'=>"off-topic"]);
+        ])->put("https://api.github.com/repos/RGeetha24/gitapi/issues/".$id."/lock",['lock_reason'=>$request->lock_reason]);
         return redirect()->route('issues')->with('success',"Issue locked successfully");
     }
 
@@ -56,7 +57,7 @@ class TicketController extends Controller
         $response = Http::withHeaders([
             "Accept" => "application/vnd.github.v3+json" ,
             "Authorization" => "token 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"
-        ])->delete("https://api.github.com/repos/RGeetha24/gitapi/issues/".$id."/lock",['lock_reason'=>"off-topic"]);
+        ])->delete("https://api.github.com/repos/RGeetha24/gitapi/issues/".$id."/lock");
         return redirect()->route('issues')->with('success',"Issue unlocked successfully");
     }
 }
