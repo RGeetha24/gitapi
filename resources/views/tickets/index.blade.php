@@ -8,6 +8,7 @@
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   @endif
+                                
 <!--Add Issue Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -29,6 +30,9 @@
                       <div class="d-flex align-items-center w-100">
                           <input type="text" class="form-control" placeholder="Title" name="title" required/>
                       </div>
+                      @error('title')
+                          <p class="text-danger">{{ $message }}</p>
+                      @enderror
                   </div>  
               </div>
               <div class="row align-items-center mb-4">
@@ -39,6 +43,9 @@
                       <div class="d-flex align-items-center w-100">
                           <input type="text" class="form-control" placeholder="Description" name="description" required/>
                       </div>
+                      @error('description')
+                          <p class="text-danger">{{ $message }}</p>
+                      @enderror
                   </div>
               </div>
               <div class="modal-footer">
