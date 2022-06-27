@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\TicketController;
+use App\Http\Controllers\Admin\WebhookController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,5 +33,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/lockissue/{id}', [TicketController::class, 'lockissue'])->name('lockissue');
     Route::get('/unlockissue/{id}', [TicketController::class, 'unlockissue'])->name('unlockissue');
 
-
+    //GIT WebHooks
+    // Route::githubWebhooks('github-webhooks');
+    
 });

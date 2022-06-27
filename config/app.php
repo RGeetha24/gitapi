@@ -124,6 +124,7 @@ return [
     'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
+    'github_webhook_secret' => env('GITHUB_WEBHOOK_SECRET'),
 
     /*
     |--------------------------------------------------------------------------
