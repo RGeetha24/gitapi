@@ -2,6 +2,12 @@
 
 @section('content')
 <div class="container">
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{ $message }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 <div class="row my-3">
     <div class="col-sm-12 col-md-12 col-lg-12">
         <div class="card mb-3">
@@ -18,8 +24,11 @@
                                 <div class="col-md-9">
                                     <div class="d-flex align-items-center w-100">
                                         <input type="text" class="form-control" value="{{$data['title']}}" name="title" required/>
-                                    </div>
-                                </div>  
+                                    </div> 
+                                    @error('title')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div> 
                             </div>
                             <div class="row align-items-center mb-4">
                                 <div class="col-md-3 mb-2">
@@ -29,6 +38,9 @@
                                     <div class="d-flex align-items-center w-100">
                                         <input type="text" class="form-control" value="{{$data['body']}}" name="description" required/>
                                     </div>
+                                    @error('description')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                             <div class=" d-flex justify-content-end align-items-center">
@@ -36,7 +48,7 @@
                                    Update
                                 </button> 
                                 <a class="btn btn-secondary" href="{{route('issues')}}">
-                                   Cancel 
+                                   Back 
                                 </a>
                             </div>
                         </form>
